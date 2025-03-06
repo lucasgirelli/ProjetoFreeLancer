@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
 const IndexPage = () => {
-  // Adicionar um log para depuração
+  // Adicionar logs para depuração
   useEffect(() => {
     console.log("IndexPage renderizado");
   }, []);
