@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import ProfileForm from '@/components/ProfileForm';
 
 const WorkerProfile: React.FC = () => {
   const { user, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
   
   if (!user) {
     return <Navigate to="/login" />;
@@ -20,6 +21,9 @@ const WorkerProfile: React.FC = () => {
       ...data,
       profileComplete: true,
     });
+    
+    // Redirect to the worker dashboard after profile is saved
+    navigate('/worker-dashboard');
   };
   
   return (

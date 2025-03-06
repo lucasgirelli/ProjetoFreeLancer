@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Home, Eye, EyeOff } from 'lucide-react';
+import { Home, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
 const Login: React.FC = () => {
@@ -26,7 +26,15 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
       <div className="w-full max-w-md space-y-8 animate-fade-in">
-        <div className="text-center">
+        <div className="text-center relative">
+          {/* Back button to return to home page */}
+          <Link to="/" className="absolute left-0 top-0 text-primary hover:text-primary/80 transition-colors">
+            <Button variant="ghost" size="sm" className="gap-1">
+              <ArrowLeft className="h-4 w-4" />
+              Back
+            </Button>
+          </Link>
+          
           <Link to="/" className="inline-flex items-center justify-center">
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
               <Home className="h-5 w-5" />
