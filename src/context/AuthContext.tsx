@@ -56,9 +56,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Verificar se o usuário está na página de login ou registro
+    // Se estiver, não carregamos automaticamente o usuário do localStorage
+    const isAuthPage = window.location.pathname === '/login' || 
+                       window.location.pathname === '/register' || 
+                       window.location.pathname === '/';
+    
     // Check for stored user on component mount
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    if (storedUser && !isAuthPage) {
       setUser(JSON.parse(storedUser));
     }
     setIsLoading(false);
@@ -83,12 +89,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           navigate('/user-dashboard');
         }
         
-        toast.success('Login successful');
+        toast.success('Login realizado com sucesso');
       } else {
-        toast.error('Invalid email or password');
+        toast.error('Email ou senha inválidos');
       }
     } catch (error) {
-      toast.error('Login failed');
+      toast.error('Falha ao realizar login');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -117,9 +123,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         navigate('/user-dashboard');
       }
       
-      toast.success('Registration successful');
+      toast.success('Cadastro realizado com sucesso');
     } catch (error) {
-      toast.error('Registration failed');
+      toast.error('Falha ao realizar cadastro');
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -130,7 +136,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
     localStorage.removeItem('user');
     navigate('/login');
-    toast.success('Logged out successfully');
+    toast.success('Desconectado com sucesso');
   };
 
   const updateUserProfile = (data: Partial<UserData>) => {
@@ -138,7 +144,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const updatedUser = { ...user, ...data };
       setUser(updatedUser);
       localStorage.setItem('user', JSON.stringify(updatedUser));
-      toast.success('Profile updated successfully');
+      toast.success('Perfil atualizado com sucesso');
     }
   };
 

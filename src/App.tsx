@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
+import HomeButton from "@/components/HomeButton";
 import NotFound from "./pages/NotFound";
 import IndexPage from "./pages/IndexPage";
 import Login from "./pages/Login";
@@ -24,6 +25,7 @@ const App = () => (
         <AuthProvider>
           <Toaster />
           <Sonner />
+          <HomeButton />
           <Routes>
             <Route path="/" element={<IndexPage />} />
             <Route path="/login" element={<Login />} />
@@ -35,6 +37,7 @@ const App = () => (
             <Route path="/services-available" element={<ServicesAvailable />} />
             {/* Rota de fallback para redirecionamento */}
             <Route path="/index" element={<Navigate to="/" replace />} />
+            <Route path="/service/:id" element={<ServiceRequest />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
