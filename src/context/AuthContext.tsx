@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'sonner';
 
 // User types
@@ -54,21 +54,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Lista de rotas públicas que não devem carregar usuário automaticamente
+  const publicRoutes = ['/', '/login', '/register'];
 
   useEffect(() => {
-    // Verificar se o usuário está na página de login ou registro
-    // Se estiver, não carregamos automaticamente o usuário do localStorage
-    const isAuthPage = window.location.pathname === '/login' || 
-                       window.location.pathname === '/register' || 
-                       window.location.pathname === '/';
+    // Só carregamos usuário do localStorage se NÃO estivermos em uma rota pública
+    const isPublicRoute = publicRoutes.includes(location.pathname);
     
-    // Check for stored user on component mount
+    // Verificamos se há usuário armazenado
     const storedUser = localStorage.getItem('user');
-    if (storedUser && !isAuthPage) {
+    
+    if (storedUser && !isPublicRoute) {
+      // Se temos um usuário e NÃO estamos em rota pública, carregamos ele
       setUser(JSON.parse(storedUser));
+    } else if (isPublicRoute && storedUser) {
+      // Se estamos em rota pública e existe um usuário no localStorage,
+      // deixamos o usuário como null, mas não limpamos o localStorage
+      setUser(null);
     }
+    
     setIsLoading(false);
-  }, []);
+  }, [location.pathname]);
 
   const login = async (email: string, password: string) => {
     try {
@@ -104,6 +112,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const register = async (name: string, email: string, password: string, role: UserRole) => {
     try {
       setIsLoading(true);
+      
+      // Certifique-se de que qualquer usuário armazenado seja removido
+      localStorage.removeItem('user');
+      
       // Mock registration
       const newUser: UserData = {
         id: Math.random().toString(36).substr(2, 9),

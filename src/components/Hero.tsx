@@ -2,8 +2,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
 const Hero = () => {
+  const { logout } = useAuth();
+  
+  // Certifica-se de que não há sessão ativa ao clicar em "Criar Conta"
+  const handleCreateAccount = () => {
+    logout(); // Desloga qualquer usuário existente antes de ir para a página de registro
+  };
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-primary/5 to-background pt-16 pb-24 sm:pb-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -16,12 +24,12 @@ const Hero = () => {
             Rápido, seguro e com garantia de qualidade.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link to="/register">
+            <Link to="/register" onClick={handleCreateAccount}>
               <Button size="lg" className="gap-2">
                 Criar Conta <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
-            <Link to="/login" className="text-sm font-semibold leading-6 text-foreground">
+            <Link to="/login" onClick={handleCreateAccount} className="text-sm font-semibold leading-6 text-foreground">
               Já tenho uma conta <span aria-hidden="true">→</span>
             </Link>
           </div>

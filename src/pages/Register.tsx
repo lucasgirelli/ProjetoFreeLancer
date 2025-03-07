@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Home, Eye, EyeOff, User, Briefcase, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { UserRole } from '@/context/AuthContext';
+import { toast } from 'sonner';
 
 const Register: React.FC = () => {
   const [name, setName] = useState('');
@@ -16,10 +17,29 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<UserRole>('customer');
   const [showPassword, setShowPassword] = useState(false);
-  const { user, register, isLoading } = useAuth();
+  const { user, register, isLoading, logout } = useAuth();
+
+  // Certificar-se de que qualquer sessão existente seja limpa ao carregar a página
+  useEffect(() => {
+    // Limpar qualquer estado de usuário (mas sem remover do localStorage)
+    const clearSession = async () => {
+      // Verificamos se há usuário no localStorage, mas não na sessão atual
+      const storedUser = localStorage.getItem('user');
+      if (storedUser && !user) {
+        toast.info('Crie uma nova conta', {
+          description: 'Complete o formulário para se cadastrar.'
+        });
+      }
+    };
+    
+    clearSession();
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Forçar logout antes de registrar para garantir que não haja sessão ativa
+    logout();
+    // Registrar novo usuário
     await register(name, email, password, role);
   };
 
