@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -16,67 +15,66 @@ import ServiceCard, { ServiceData } from '@/components/ServiceCard';
 import { Search, MessagesSquare, Info, History } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Mock data
 const mockServices: ServiceData[] = [
   {
     id: '1',
-    title: 'Fix Leaking Bathroom Faucet',
-    description: 'The bathroom sink faucet is leaking and needs repair or replacement.',
-    category: 'Plumbing',
-    location: 'Brooklyn, NY',
-    date: 'June 10, 2023',
+    title: 'Conserto de Vazamento no Banheiro',
+    description: 'A torneira do banheiro está vazando e precisa de reparo ou substituição.',
+    category: 'Encanamento',
+    location: 'São Paulo, SP',
+    date: '10 de Junho, 2023',
     status: 'available',
-    customerName: 'John Davis',
+    customerName: 'João da Silva',
     customerAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    skills: ['Plumbing', 'Repairs'],
+    skills: ['Encanamento', 'Reparos'],
   },
   {
     id: '2',
-    title: 'Electrical Outlet Not Working',
-    description: 'Two outlets in the bedroom are not working. Need someone to diagnose and fix the issue.',
-    category: 'Electrical',
-    location: 'Manhattan, NY',
-    date: 'June 12, 2023',
+    title: 'Eletricista Não Funcionando',
+    description: 'Duas tomadas no quarto não estão funcionando. Preciso de alguém para diagnosticar e corrigir o problema.',
+    category: 'Eletricista',
+    location: 'Rio de Janeiro, RJ',
+    date: '12 de Junho, 2023',
     status: 'available',
-    customerName: 'Emily Wright',
+    customerName: 'Maria Souza',
     customerAvatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    skills: ['Electrical', 'Diagnostics'],
+    skills: ['Eletricista', 'Diagnóstico'],
   },
   {
     id: '3',
-    title: 'Mounting TV on Wall',
-    description: 'Need to mount a 55-inch TV on drywall. All materials provided.',
-    category: 'Mounting',
-    location: 'Queens, NY',
-    date: 'June 15, 2023',
+    title: 'Montagem de TV na Parede',
+    description: 'Preciso montar uma TV 55 polegadas na parede. Todos os materiais fornecidos.',
+    category: 'Montagem',
+    location: 'São Paulo, SP',
+    date: '15 de Junho, 2023',
     status: 'available',
-    customerName: 'Michael Chen',
+    customerName: 'Carlos Oliveira',
     customerAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    skills: ['Mounting', 'Installation'],
+    skills: ['Montagem', 'Instalação'],
   },
   {
     id: '4',
-    title: 'Fix Dishwasher',
-    description: 'Dishwasher is not draining properly. Need someone to diagnose and repair.',
-    category: 'Appliance Repair',
-    location: 'Bronx, NY',
-    date: 'June 8, 2023',
+    title: 'Conserto de Máquina de Lavar',
+    description: 'A máquina de lavar não está descartando adequadamente. Preciso de alguém para diagnosticar e reparar.',
+    category: 'Reparo de Máquina',
+    location: 'Rio de Janeiro, RJ',
+    date: '8 de Junho, 2023',
     status: 'in-progress',
-    customerName: 'Sarah Johnson',
+    customerName: 'Ana Santos',
     customerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    skills: ['Appliance Repair', 'Plumbing'],
+    skills: ['Reparo de Máquina', 'Encanamento'],
   },
   {
     id: '5',
-    title: 'Paint Bedroom',
-    description: 'Need to paint a 12x14 bedroom. Walls are in good condition, just need a color change.',
-    category: 'Painting',
-    location: 'Staten Island, NY',
-    date: 'May 20, 2023',
+    title: 'Pintura de Quarto',
+    description: 'Preciso pintar uma sala de 12x14. As paredes estão em bom estado, apenas preciso de uma mudança de cor.',
+    category: 'Pintura',
+    location: 'São Paulo, SP',
+    date: '20 de Maio, 2023',
     status: 'completed',
-    customerName: 'Robert Taylor',
+    customerName: 'Pedro Costa',
     customerAvatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    skills: ['Painting', 'Interior'],
+    skills: ['Pintura', 'Interno'],
   },
 ];
 
@@ -103,12 +101,12 @@ const WorkerDashboard: React.FC = () => {
         ? { ...service, status: 'in-progress' as const } 
         : service
     ));
-    toast.success('Service accepted');
+    toast.success('Serviço aceito');
   };
   
   const handleRejectService = (id: string) => {
     setServices(services.filter(service => service.id !== id));
-    toast.success('Service request passed');
+    toast.success('Pedido de serviço ignorado');
   };
   
   const handleCompleteService = (id: string) => {
@@ -117,7 +115,7 @@ const WorkerDashboard: React.FC = () => {
         ? { ...service, status: 'completed' as const } 
         : service
     ));
-    toast.success('Service marked as complete');
+    toast.success('Serviço marcado como concluído');
   };
   
   const handleViewDetails = (id: string) => {
@@ -129,15 +127,15 @@ const WorkerDashboard: React.FC = () => {
       <div className="page-container mt-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 animate-slide-down">
           <div>
-            <h1 className="text-3xl font-bold">Welcome, {user.name}</h1>
-            <p className="mt-1 text-muted-foreground">Manage your service jobs</p>
+            <h1 className="text-3xl font-bold">Bem-vindo, {user.name}</h1>
+            <p className="mt-1 text-muted-foreground">Gerencie seus trabalhos de serviço</p>
           </div>
           
           <div className="mt-4 md:mt-0">
             <Link to="/services-available">
               <Button className="button-hover">
                 <Search className="mr-2 h-4 w-4" />
-                Browse Jobs
+                Achar Novos Trabalhos
               </Button>
             </Link>
           </div>
@@ -146,8 +144,8 @@ const WorkerDashboard: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <Card className="animate-slide-up">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xl">Available</CardTitle>
-              <CardDescription>Service requests you can accept</CardDescription>
+              <CardTitle className="text-xl">Disponíveis</CardTitle>
+              <CardDescription>Pedidos de serviço que você pode aceitar</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">{availableServices.length}</div>
@@ -156,8 +154,8 @@ const WorkerDashboard: React.FC = () => {
           
           <Card className="animate-slide-up [animation-delay:100ms]">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xl">Active</CardTitle>
-              <CardDescription>Services you're currently working on</CardDescription>
+              <CardTitle className="text-xl">Ativos</CardTitle>
+              <CardDescription>Serviços que você está trabalhando atualmente</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">{activeServices.length}</div>
@@ -166,8 +164,8 @@ const WorkerDashboard: React.FC = () => {
           
           <Card className="animate-slide-up [animation-delay:200ms]">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xl">Completed</CardTitle>
-              <CardDescription>Services you've completed</CardDescription>
+              <CardTitle className="text-xl">Concluídos</CardTitle>
+              <CardDescription>Serviços que você concluiu</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">{completedServices.length}</div>
@@ -177,9 +175,9 @@ const WorkerDashboard: React.FC = () => {
         
         <Tabs defaultValue="active" className="animate-fade-in">
           <TabsList className="mb-6">
-            <TabsTrigger value="active">Active</TabsTrigger>
-            <TabsTrigger value="available">Available</TabsTrigger>
-            <TabsTrigger value="completed">Completed</TabsTrigger>
+            <TabsTrigger value="active">Ativos</TabsTrigger>
+            <TabsTrigger value="available">Disponíveis</TabsTrigger>
+            <TabsTrigger value="completed">Concluídos</TabsTrigger>
           </TabsList>
           
           <TabsContent value="active" className="space-y-4">
@@ -198,14 +196,14 @@ const WorkerDashboard: React.FC = () => {
             ) : (
               <div className="text-center py-12">
                 <Info className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">No active jobs</h3>
+                <h3 className="mt-4 text-lg font-medium">Nenhum trabalho ativo</h3>
                 <p className="mt-2 text-muted-foreground">
-                  You don't have any active jobs at the moment.
+                  Você não tem nenhum trabalho ativo no momento.
                 </p>
                 <Link to="/services-available" className="mt-4 inline-block">
                   <Button className="button-hover">
                     <Search className="mr-2 h-4 w-4" />
-                    Find Available Jobs
+                    Encontrar Trabalhos Disponíveis
                   </Button>
                 </Link>
               </div>
@@ -229,12 +227,12 @@ const WorkerDashboard: React.FC = () => {
             ) : (
               <div className="text-center py-12">
                 <Info className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">No available jobs</h3>
+                <h3 className="mt-4 text-lg font-medium">Nenhum trabalho disponível</h3>
                 <p className="mt-2 text-muted-foreground">
-                  There are no jobs matching your skills available right now.
+                  Não há trabalhos compatíveis com suas habilidades disponíveis no momento.
                 </p>
                 <Button variant="outline" className="mt-4 button-hover" onClick={() => navigate(0)}>
-                  Refresh
+                  Atualizar
                 </Button>
               </div>
             )}
@@ -255,13 +253,13 @@ const WorkerDashboard: React.FC = () => {
             ) : (
               <div className="text-center py-12">
                 <History className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">No completed jobs</h3>
+                <h3 className="mt-4 text-lg font-medium">Nenhum trabalho concluído</h3>
                 <p className="mt-2 text-muted-foreground">
-                  You haven't completed any jobs yet.
+                  Você ainda não concluiu nenhum trabalho.
                 </p>
                 <Link to="/service-history" className="mt-4 inline-block">
                   <Button variant="outline" className="button-hover">
-                    View Service History
+                    Ver Histórico de Serviços
                   </Button>
                 </Link>
               </div>

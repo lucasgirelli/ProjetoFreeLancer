@@ -4,9 +4,9 @@ import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Home, Eye, EyeOff, User, Briefcase } from 'lucide-react';
+import { Home, Eye, EyeOff, User, Briefcase, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { UserRole } from '@/context/AuthContext';
 
@@ -30,25 +30,33 @@ const Register: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
       <div className="w-full max-w-md space-y-8 animate-fade-in">
-        <div className="text-center">
+        <div className="text-center relative">
+          {/* Botão para voltar à página inicial */}
+          <Link to="/" className="absolute left-0 top-0 text-primary hover:text-primary/80 transition-colors">
+            <Button variant="ghost" size="sm" className="gap-1">
+              <ArrowLeft className="h-4 w-4" />
+              Voltar
+            </Button>
+          </Link>
+          
           <Link to="/" className="inline-flex items-center justify-center">
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground">
               <Home className="h-5 w-5" />
             </div>
           </Link>
-          <h2 className="mt-4 text-2xl font-bold text-center">Create your account</h2>
-          <p className="mt-1 text-muted-foreground">Join our home services marketplace</p>
+          <h2 className="mt-4 text-2xl font-bold text-center">Crie sua conta</h2>
+          <p className="mt-1 text-muted-foreground">Entre para nosso marketplace de serviços domésticos</p>
         </div>
         
         <Card className="border border-border">
           <form onSubmit={handleSubmit}>
             <CardContent className="pt-6 space-y-4">
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">Nome Completo</Label>
                 <Input
                   id="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="João Silva"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -62,7 +70,7 @@ const Register: React.FC = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder="nome@exemplo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -72,7 +80,7 @@ const Register: React.FC = () => {
               </div>
               
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Senha</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -99,7 +107,7 @@ const Register: React.FC = () => {
               </div>
               
               <div className="grid w-full items-center gap-1.5">
-                <Label>I am a</Label>
+                <Label>Eu sou um</Label>
                 <RadioGroup 
                   value={role} 
                   onValueChange={(value) => setRole(value as UserRole)}
@@ -117,7 +125,7 @@ const Register: React.FC = () => {
                       className="sr-only"
                     />
                     <User className="mb-3 h-6 w-6" />
-                    <span className="text-sm font-medium">Customer</span>
+                    <span className="text-sm font-medium">Cliente</span>
                   </Label>
                   
                   <Label
@@ -132,7 +140,7 @@ const Register: React.FC = () => {
                       className="sr-only"
                     />
                     <Briefcase className="mb-3 h-6 w-6" />
-                    <span className="text-sm font-medium">Service Provider</span>
+                    <span className="text-sm font-medium">Prestador de Serviços</span>
                   </Label>
                 </RadioGroup>
               </div>
@@ -144,13 +152,13 @@ const Register: React.FC = () => {
                 className="w-full button-hover"
                 disabled={isLoading}
               >
-                {isLoading ? 'Creating account...' : 'Create account'}
+                {isLoading ? 'Criando conta...' : 'Criar conta'}
               </Button>
               
               <p className="mt-4 text-center text-sm text-muted-foreground">
-                Already have an account?{' '}
+                Já tem uma conta?{' '}
                 <Link to="/login" className="text-primary hover:underline">
-                  Sign in
+                  Entrar
                 </Link>
               </p>
             </CardFooter>

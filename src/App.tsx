@@ -13,6 +13,7 @@ import UserDashboard from "./pages/UserDashboard";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import WorkerProfile from "./pages/WorkerProfile";
 import ServiceRequest from "./pages/ServiceRequest";
+import ServicesAvailable from "./pages/ServicesAvailable";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/worker-dashboard" element={<WorkerDashboard />} />
             <Route path="/worker-profile" element={<WorkerProfile />} />
             <Route path="/service-request" element={<ServiceRequest />} />
+            <Route path="/services-available" element={<ServicesAvailable />} />
             {/* Rota de fallback para redirecionamento */}
             <Route path="/index" element={<Navigate to="/" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

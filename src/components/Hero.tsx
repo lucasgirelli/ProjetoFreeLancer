@@ -18,7 +18,7 @@ const Hero = () => {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link to="/register">
               <Button size="lg" className="gap-2">
-                Começar agora <ArrowRight className="h-4 w-4" />
+                Criar agora <ArrowRight className="h-4 w-4" />
               </Button>
             </Link>
             <Link to="/login" className="text-sm font-semibold leading-6 text-foreground">

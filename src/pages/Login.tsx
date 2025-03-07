@@ -4,7 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Home, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
@@ -27,11 +27,11 @@ const Login: React.FC = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
       <div className="w-full max-w-md space-y-8 animate-fade-in">
         <div className="text-center relative">
-          {/* Back button to return to home page */}
+          {/* Botão para voltar à página inicial */}
           <Link to="/" className="absolute left-0 top-0 text-primary hover:text-primary/80 transition-colors">
             <Button variant="ghost" size="sm" className="gap-1">
               <ArrowLeft className="h-4 w-4" />
-              Back
+              Voltar
             </Button>
           </Link>
           
@@ -40,8 +40,8 @@ const Login: React.FC = () => {
               <Home className="h-5 w-5" />
             </div>
           </Link>
-          <h2 className="mt-4 text-2xl font-bold text-center">Welcome back</h2>
-          <p className="mt-1 text-muted-foreground">Sign in to your account</p>
+          <h2 className="mt-4 text-2xl font-bold text-center">Bem-vindo de volta</h2>
+          <p className="mt-1 text-muted-foreground">Acesse sua conta</p>
         </div>
         
         <Card className="border border-border">
@@ -52,7 +52,7 @@ const Login: React.FC = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="name@example.com"
+                  placeholder="nome@exemplo.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -63,9 +63,9 @@ const Login: React.FC = () => {
               
               <div className="grid w-full items-center gap-1.5">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">Senha</Label>
                   <Link to="/forgot-password" className="text-xs text-primary hover:underline">
-                    Forgot password?
+                    Esqueceu a senha?
                   </Link>
                 </div>
                 <div className="relative">
@@ -100,13 +100,13 @@ const Login: React.FC = () => {
                 className="w-full button-hover"
                 disabled={isLoading}
               >
-                {isLoading ? 'Signing in...' : 'Sign in'}
+                {isLoading ? 'Entrando...' : 'Entrar'}
               </Button>
               
               <p className="mt-4 text-center text-sm text-muted-foreground">
-                Don't have an account?{' '}
+                Não tem uma conta?{' '}
                 <Link to="/register" className="text-primary hover:underline">
-                  Sign up
+                  Cadastre-se
                 </Link>
               </p>
             </CardFooter>
