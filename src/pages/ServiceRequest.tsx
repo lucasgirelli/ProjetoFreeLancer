@@ -11,18 +11,19 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@/context/AuthContext';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { CalendarIcon, ArrowLeft, Check } from 'lucide-react';
 import { toast } from 'sonner';
 
 const serviceCategories = [
-  { id: 'plumbing', name: 'Plumbing' },
-  { id: 'electrical', name: 'Electrical' },
-  { id: 'cleaning', name: 'Cleaning' },
-  { id: 'painting', name: 'Painting' },
-  { id: 'carpentry', name: 'Carpentry' },
-  { id: 'appliance', name: 'Appliance Repair' },
-  { id: 'landscaping', name: 'Landscaping' },
-  { id: 'mounting', name: 'Mounting & Installation' },
+  { id: 'plumbing', name: 'Encanamento' },
+  { id: 'electrical', name: 'Elétrica' },
+  { id: 'cleaning', name: 'Limpeza' },
+  { id: 'painting', name: 'Pintura' },
+  { id: 'carpentry', name: 'Carpintaria' },
+  { id: 'appliance', name: 'Reparo de Eletrodomésticos' },
+  { id: 'landscaping', name: 'Jardinagem' },
+  { id: 'mounting', name: 'Montagem e Instalação' },
 ];
 
 const ServiceRequest: React.FC = () => {
@@ -50,7 +51,7 @@ const ServiceRequest: React.FC = () => {
     
     // Simulate API call
     setTimeout(() => {
-      toast.success('Service request submitted successfully');
+      toast.success('Solicitação de serviço enviada com sucesso');
       navigate('/user-dashboard');
     }, 1000);
   };
@@ -64,14 +65,14 @@ const ServiceRequest: React.FC = () => {
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
+          Voltar
         </Button>
         
         <div className="max-w-3xl mx-auto animate-fade-in">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold">Request a Service</h1>
+            <h1 className="text-3xl font-bold">Solicitar um Serviço</h1>
             <p className="mt-2 text-muted-foreground">
-              Tell us what you need help with
+              Diga-nos com o que você precisa de ajuda
             </p>
           </div>
           
@@ -79,30 +80,30 @@ const ServiceRequest: React.FC = () => {
             <form onSubmit={handleSubmit}>
               <CardContent className="pt-6 space-y-4">
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="title">Service Title</Label>
+                  <Label htmlFor="title">Título do Serviço</Label>
                   <Input
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="e.g., Fix Leaking Faucet"
+                    placeholder="ex.: Consertar Torneira com Vazamento"
                     required
                     className="w-full"
                   />
                 </div>
                 
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="category">Category</Label>
+                  <Label htmlFor="category">Categoria</Label>
                   <Select
                     value={category}
                     onValueChange={setCategory}
                     required
                   >
                     <SelectTrigger id="category" className="w-full">
-                      <SelectValue placeholder="Select a category" />
+                      <SelectValue placeholder="Selecione uma categoria" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectLabel>Categories</SelectLabel>
+                        <SelectLabel>Categorias</SelectLabel>
                         {serviceCategories.map((cat) => (
                           <SelectItem key={cat.id} value={cat.id}>
                             {cat.name}
@@ -114,31 +115,31 @@ const ServiceRequest: React.FC = () => {
                 </div>
                 
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="description">Description</Label>
+                  <Label htmlFor="description">Descrição</Label>
                   <Textarea
                     id="description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    placeholder="Describe the service you need in detail..."
+                    placeholder="Descreva o serviço que você precisa em detalhes..."
                     required
                     className="w-full min-h-[120px]"
                   />
                 </div>
                 
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="location">Location</Label>
+                  <Label htmlFor="location">Localização</Label>
                   <Input
                     id="location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Your address"
+                    placeholder="Seu endereço"
                     required
                     className="w-full"
                   />
                 </div>
                 
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="date">Preferred Date</Label>
+                  <Label htmlFor="date">Data Preferencial</Label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
@@ -147,7 +148,7 @@ const ServiceRequest: React.FC = () => {
                         className="w-full justify-start text-left font-normal"
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                        {date ? format(date, 'PPP', { locale: ptBR }) : <span>Escolha uma data</span>}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
@@ -156,6 +157,7 @@ const ServiceRequest: React.FC = () => {
                         selected={date}
                         onSelect={setDate}
                         initialFocus
+                        locale={ptBR}
                         disabled={(date) => date < new Date()}
                       />
                     </PopoverContent>
@@ -171,7 +173,7 @@ const ServiceRequest: React.FC = () => {
                   onClick={() => navigate(-1)}
                   disabled={submitting}
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button
                   type="submit"
@@ -179,11 +181,11 @@ const ServiceRequest: React.FC = () => {
                   disabled={submitting}
                 >
                   {submitting ? (
-                    <>Submitting...</>
+                    <>Enviando...</>
                   ) : (
                     <>
                       <Check className="mr-2 h-4 w-4" />
-                      Submit Request
+                      Enviar Solicitação
                     </>
                   )}
                 </Button>

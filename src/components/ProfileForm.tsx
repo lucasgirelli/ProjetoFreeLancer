@@ -66,8 +66,8 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user, onSave, isWorker = fals
     <Card className="w-full max-w-lg mx-auto border border-border animate-fade-in">
       <form onSubmit={handleSubmit}>
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-center">Your Profile</CardTitle>
-          <CardDescription className="text-center">Update your personal information</CardDescription>
+          <CardTitle className="text-xl font-semibold text-center">Seu Perfil</CardTitle>
+          <CardDescription className="text-center">Atualize suas informações pessoais</CardDescription>
         </CardHeader>
         
         <CardContent className="space-y-6">
@@ -82,7 +82,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user, onSave, isWorker = fals
             
             <div className="flex items-center">
               <Label htmlFor="picture" className="button-hover cursor-pointer bg-secondary px-3 py-1.5 rounded-md text-sm text-secondary-foreground">
-                Change picture
+                Alterar foto
               </Label>
               <Input 
                 id="picture" 
@@ -96,7 +96,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user, onSave, isWorker = fals
           
           {/* Name */}
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name">Nome Completo</Label>
             <Input
               id="name"
               type="text"
@@ -122,13 +122,13 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user, onSave, isWorker = fals
           
           {/* Location */}
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="location">Location</Label>
+            <Label htmlFor="location">Localização</Label>
             <Input
               id="location"
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              placeholder="City, State"
+              placeholder="Cidade, Estado"
               className="w-full"
             />
           </div>
@@ -136,17 +136,17 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user, onSave, isWorker = fals
           {/* Skills (for workers only) */}
           {isWorker && (
             <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="skills">Skills & Expertise</Label>
+              <Label htmlFor="skills">Habilidades & Expertise</Label>
               <div className="flex w-full space-x-2">
                 <Input
                   id="skills"
                   type="text"
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  placeholder="Add a skill (e.g., Plumbing, Electrical)"
+                  placeholder="Adicione uma habilidade (ex.: Encanamento, Elétrica)"
                   className="w-full"
                 />
-                <Button type="button" onClick={addSkill} size="sm">Add</Button>
+                <Button type="button" onClick={addSkill} size="sm">Adicionar</Button>
               </div>
               
               {skills.length > 0 && (
@@ -169,8 +169,10 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user, onSave, isWorker = fals
           )}
         </CardContent>
         
-        <CardFooter className="flex justify-center">
-          <Button type="submit" className="w-full button-hover">Save Profile</Button>
+        <CardFooter className="flex justify-end pt-3">
+          <Button type="submit" className="button-hover">
+            Salvar Alterações
+          </Button>
         </CardFooter>
       </form>
     </Card>
