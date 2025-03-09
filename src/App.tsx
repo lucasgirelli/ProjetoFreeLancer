@@ -15,6 +15,8 @@ import WorkerDashboard from "./pages/WorkerDashboard";
 import WorkerProfile from "./pages/WorkerProfile";
 import ServiceRequest from "./pages/ServiceRequest";
 import ServicesAvailable from "./pages/ServicesAvailable";
+import WorkerRatings from "./pages/WorkerRatings";
+import Chat from "./pages/Chat";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,9 @@ const App = () => (
             <Route path="/worker-profile" element={<WorkerProfile />} />
             <Route path="/service-request" element={<ServiceRequest />} />
             <Route path="/services-available" element={<ServicesAvailable />} />
+            <Route path="/worker-ratings/:workerId" element={<WorkerRatings />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:chatId" element={<Chat />} />
             {/* Rota de fallback para redirecionamento */}
             <Route path="/index" element={<Navigate to="/" replace />} />
             <Route path="/service/:id" element={<ServiceRequest />} />

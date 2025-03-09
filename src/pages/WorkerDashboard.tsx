@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
 import ServiceCard, { ServiceData } from '@/components/ServiceCard';
-import { Search, MessagesSquare, Info, History } from 'lucide-react';
+import { Search, MessageSquare, Info, History } from 'lucide-react';
 import { toast } from 'sonner';
 
 const mockServices: ServiceData[] = [
@@ -26,6 +27,7 @@ const mockServices: ServiceData[] = [
     status: 'available',
     customerName: 'João da Silva',
     customerAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '1',
     skills: ['Encanamento', 'Reparos'],
   },
   {
@@ -38,6 +40,7 @@ const mockServices: ServiceData[] = [
     status: 'available',
     customerName: 'Maria Souza',
     customerAvatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '3',
     skills: ['Eletricista', 'Diagnóstico'],
   },
   {
@@ -50,6 +53,7 @@ const mockServices: ServiceData[] = [
     status: 'available',
     customerName: 'Carlos Oliveira',
     customerAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '4',
     skills: ['Montagem', 'Instalação'],
   },
   {
@@ -62,6 +66,7 @@ const mockServices: ServiceData[] = [
     status: 'in-progress',
     customerName: 'Ana Santos',
     customerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '1',
     skills: ['Reparo de Máquina', 'Encanamento'],
   },
   {
@@ -74,6 +79,7 @@ const mockServices: ServiceData[] = [
     status: 'completed',
     customerName: 'Pedro Costa',
     customerAvatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '5',
     skills: ['Pintura', 'Interno'],
   },
 ];
@@ -131,11 +137,17 @@ const WorkerDashboard: React.FC = () => {
             <p className="mt-1 text-muted-foreground">Gerencie seus trabalhos de serviço</p>
           </div>
           
-          <div className="mt-4 md:mt-0">
+          <div className="mt-4 md:mt-0 flex gap-3">
             <Link to="/services-available">
               <Button className="button-hover">
                 <Search className="mr-2 h-4 w-4" />
                 Achar Novos Trabalhos
+              </Button>
+            </Link>
+            <Link to="/chat">
+              <Button variant="outline" className="button-hover">
+                <MessageSquare className="mr-2 h-4 w-4" />
+                Mensagens
               </Button>
             </Link>
           </div>

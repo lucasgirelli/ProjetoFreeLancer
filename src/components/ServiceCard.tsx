@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { CalendarIcon, ClockIcon, MapPinIcon } from 'lucide-react';
+import { CalendarIcon, ClockIcon, MapPinIcon, MessageSquare, Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export interface ServiceData {
   id: string;
@@ -14,20 +14,21 @@ export interface ServiceData {
   location: string;
   date: string;
   status: 'pending' | 'in-progress' | 'completed' | 'available';
-  price?: string;
-  customerName?: string;
-  customerAvatar?: string;
+  skills?: string[];
   workerName?: string;
   workerAvatar?: string;
-  skills?: string[];
+  workerId?: string;
+  customerName?: string;
+  customerAvatar?: string;
+  customerId?: string;
 }
 
 interface ServiceCardProps {
   service: ServiceData;
   userRole: 'customer' | 'worker';
+  onCancel?: (id: string) => void;
   onAccept?: (id: string) => void;
   onReject?: (id: string) => void;
-  onCancel?: (id: string) => void;
   onComplete?: (id: string) => void;
   onViewDetails?: (id: string) => void;
 }
@@ -35,9 +36,9 @@ interface ServiceCardProps {
 const ServiceCard: React.FC<ServiceCardProps> = ({
   service,
   userRole,
+  onCancel,
   onAccept,
   onReject,
-  onCancel,
   onComplete,
   onViewDetails,
 }) => {
@@ -49,7 +50,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   };
 
   return (
-    <Card className="overflow-hidden card-hover transition-all duration-300 border border-border bg-card">
+    <Card className="animate-fade-in overflow-hidden transition-all hover:shadow-md">
       <CardHeader className="pb-3">
         <div className="flex justify-between items-start">
           <div>
@@ -62,7 +63,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
       </CardHeader>
       
-      <CardContent className="pb-3 space-y-4">
+      <CardContent className="relative p-4 pt-0">
         <p className="text-sm text-card-foreground">{service.description}</p>
         
         <div className="flex flex-col space-y-2">
@@ -93,28 +94,67 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           </div>
         )}
         
-        {/* Show customer or worker info depending on the role */}
-        {userRole === 'worker' && service.customerName && (
-          <div className="flex items-center space-x-2 mt-2">
-            <Avatar className="h-6 w-6">
-              <AvatarImage src={service.customerAvatar} alt={service.customerName} />
-              <AvatarFallback>{service.customerName.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <span className="text-sm text-muted-foreground">
-              Posted by <span className="font-medium text-card-foreground">{service.customerName}</span>
-            </span>
+        {userRole === 'customer' && service.workerName && (service.status === 'in-progress' || service.status === 'completed') && (
+          <div className="mt-4 flex items-center">
+            <div className="flex items-center">
+              <Avatar className="h-8 w-8 mr-2">
+                {service.workerAvatar ? (
+                  <AvatarImage src={service.workerAvatar} alt={service.workerName} />
+                ) : (
+                  <AvatarFallback>{service.workerName.charAt(0)}</AvatarFallback>
+                )}
+              </Avatar>
+              <div>
+                <p className="text-xs text-muted-foreground">Profissional</p>
+                <p className="text-sm font-medium">{service.workerName}</p>
+              </div>
+            </div>
+            <div className="ml-auto flex items-center gap-2">
+              {service.workerId && (
+                <>
+                  <Link to={`/chat`}>
+                    <Button size="icon" variant="ghost" className="h-8 w-8" title="Enviar mensagem">
+                      <MessageSquare className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  
+                  {service.status === 'completed' && (
+                    <Link to={`/worker-ratings/${service.workerId}`}>
+                      <Button size="icon" variant="ghost" className="h-8 w-8" title="Avaliar profissional">
+                        <Star className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         )}
         
-        {userRole === 'customer' && service.workerName && (
-          <div className="flex items-center space-x-2 mt-2">
-            <Avatar className="h-6 w-6">
-              <AvatarImage src={service.workerAvatar} alt={service.workerName} />
-              <AvatarFallback>{service.workerName.charAt(0)}</AvatarFallback>
-            </Avatar>
-            <span className="text-sm text-muted-foreground">
-              Assigned to <span className="font-medium text-card-foreground">{service.workerName}</span>
-            </span>
+        {userRole === 'worker' && service.customerName && (service.status === 'in-progress' || service.status === 'available') && (
+          <div className="mt-4 flex items-center">
+            <div className="flex items-center">
+              <Avatar className="h-8 w-8 mr-2">
+                {service.customerAvatar ? (
+                  <AvatarImage src={service.customerAvatar} alt={service.customerName} />
+                ) : (
+                  <AvatarFallback>{service.customerName.charAt(0)}</AvatarFallback>
+                )}
+              </Avatar>
+              <div>
+                <p className="text-xs text-muted-foreground">Cliente</p>
+                <p className="text-sm font-medium">{service.customerName}</p>
+              </div>
+            </div>
+            {service.customerId && (
+              <div className="ml-auto">
+                <Link to={`/chat`}>
+                  <Button size="icon" variant="ghost" className="h-8 w-8" title="Enviar mensagem">
+                    <MessageSquare className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </CardContent>
