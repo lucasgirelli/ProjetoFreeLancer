@@ -6,7 +6,7 @@ import ProfileForm from '@/components/ProfileForm';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const WorkerProfile: React.FC = () => {
+const PerfilTrabalhador: React.FC = () => {
   const { user, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   
@@ -15,7 +15,7 @@ const WorkerProfile: React.FC = () => {
   }
   
   if (user.role !== 'worker') {
-    return <Navigate to="/user-dashboard" />;
+    return <Navigate to="/painel-usuario" />;
   }
   
   const handleSave = (data: Partial<typeof user>) => {
@@ -25,7 +25,7 @@ const WorkerProfile: React.FC = () => {
     });
     
     // Redirecionar para o painel do trabalhador após salvar o perfil
-    navigate('/worker-dashboard');
+    navigate('/painel-trabalhador');
   };
   
   return (
@@ -33,7 +33,7 @@ const WorkerProfile: React.FC = () => {
       <div className="page-container mt-12">
         <div className="max-w-3xl mx-auto mb-8 animate-slide-down">
           <div className="flex justify-between items-center mb-6">
-            <Link to="/worker-dashboard" className="text-primary hover:text-primary/80 transition-colors">
+            <Link to="/painel-trabalhador" className="text-primary hover:text-primary/80 transition-colors">
               <Button variant="ghost" size="sm" className="gap-1">
                 <ArrowLeft className="h-4 w-4" />
                 Voltar ao painel
@@ -53,4 +53,4 @@ const WorkerProfile: React.FC = () => {
   );
 };
 
-export default WorkerProfile;
+export default PerfilTrabalhador;

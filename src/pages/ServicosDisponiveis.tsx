@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
@@ -84,7 +83,7 @@ const categories = [
   'Reparo de Eletrodomésticos',
 ];
 
-const ServicesAvailable: React.FC = () => {
+const ServicosDisponiveis: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Todas categorias');
   const { user } = useAuth();
@@ -94,7 +93,7 @@ const ServicesAvailable: React.FC = () => {
   }
   
   if (user.role !== 'worker') {
-    return <Navigate to="/user-dashboard" />;
+    return <Navigate to="/painel-usuario" />;
   }
   
   // Filtrar serviços com base na pesquisa e categoria
@@ -189,4 +188,4 @@ const ServicesAvailable: React.FC = () => {
   );
 };
 
-export default ServicesAvailable;
+export default ServicosDisponiveis;

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -26,7 +25,7 @@ const serviceCategories = [
   { id: 'mounting', name: 'Montagem e Instalação' },
 ];
 
-const ServiceRequest: React.FC = () => {
+const SolicitarServico: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   
@@ -42,7 +41,7 @@ const ServiceRequest: React.FC = () => {
   }
   
   if (user.role !== 'customer') {
-    return <Navigate to="/worker-dashboard" />;
+    return <Navigate to="/painel-trabalhador" />;
   }
   
   const handleSubmit = (e: React.FormEvent) => {
@@ -52,7 +51,7 @@ const ServiceRequest: React.FC = () => {
     // Simulate API call
     setTimeout(() => {
       toast.success('Solicitação de serviço enviada com sucesso');
-      navigate('/user-dashboard');
+      navigate('/painel-usuario');
     }, 1000);
   };
   
@@ -198,4 +197,4 @@ const ServiceRequest: React.FC = () => {
   );
 };
 
-export default ServiceRequest;
+export default SolicitarServico;

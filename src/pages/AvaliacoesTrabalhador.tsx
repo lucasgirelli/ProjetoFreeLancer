@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, useParams, Navigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
@@ -12,7 +11,7 @@ import { ArrowLeft, Send, Star, User } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-const WorkerRatings: React.FC = () => {
+const AvaliacoesTrabalhador: React.FC = () => {
   const { user, getRatingsForWorker, saveRating, getUserRatings } = useAuth();
   const { workerId } = useParams<{ workerId: string }>();
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const WorkerRatings: React.FC = () => {
   }
   
   if (!workerId) {
-    return <Navigate to="/user-dashboard" />;
+    return <Navigate to="/painel-usuario" />;
   }
   
   // Buscar dados do trabalhador (em uma aplicação real, isso seria uma chamada de API)
@@ -269,4 +268,4 @@ const WorkerRatings: React.FC = () => {
   );
 };
 
-export default WorkerRatings;
+export default AvaliacoesTrabalhador;

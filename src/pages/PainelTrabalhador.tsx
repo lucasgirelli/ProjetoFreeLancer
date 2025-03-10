@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -13,47 +12,78 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/context/AuthContext';
 import ServiceCard, { ServiceData } from '@/components/ServiceCard';
-import { Plus, MessageSquare, Info, History } from 'lucide-react';
+import { Search, MessageSquare, Info, History } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Mock data
 const mockServices: ServiceData[] = [
   {
     id: '1',
-    title: 'Fix Leaking Bathroom Faucet',
-    description: 'The bathroom sink faucet is leaking and needs repair or replacement.',
-    category: 'Plumbing',
-    location: 'Brooklyn, NY',
-    date: 'June 10, 2023',
-    status: 'in-progress',
-    workerName: 'Mike Peters',
-    workerAvatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    workerId: '2',
+    title: 'Conserto de Vazamento no Banheiro',
+    description: 'A torneira do banheiro está vazando e precisa de reparo ou substituição.',
+    category: 'Encanamento',
+    location: 'São Paulo, SP',
+    date: '10 de Junho, 2023',
+    status: 'available',
+    customerName: 'João da Silva',
+    customerAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '1',
+    skills: ['Encanamento', 'Reparos'],
   },
   {
     id: '2',
-    title: 'Paint Living Room Walls',
-    description: 'Need to repaint living room walls. The room is approximately 15x20 feet.',
-    category: 'Painting',
-    location: 'Manhattan, NY',
-    date: 'June 15, 2023',
-    status: 'pending',
+    title: 'Eletricista Não Funcionando',
+    description: 'Duas tomadas no quarto não estão funcionando. Preciso de alguém para diagnosticar e corrigir o problema.',
+    category: 'Eletricista',
+    location: 'Rio de Janeiro, RJ',
+    date: '12 de Junho, 2023',
+    status: 'available',
+    customerName: 'Maria Souza',
+    customerAvatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '3',
+    skills: ['Eletricista', 'Diagnóstico'],
   },
   {
     id: '3',
-    title: 'Replace Kitchen Light Fixture',
-    description: 'Need to replace an old light fixture in the kitchen with a new pendant light.',
-    category: 'Electrical',
-    location: 'Queens, NY',
-    date: 'May 28, 2023',
+    title: 'Montagem de TV na Parede',
+    description: 'Preciso montar uma TV 55 polegadas na parede. Todos os materiais fornecidos.',
+    category: 'Montagem',
+    location: 'São Paulo, SP',
+    date: '15 de Junho, 2023',
+    status: 'available',
+    customerName: 'Carlos Oliveira',
+    customerAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '4',
+    skills: ['Montagem', 'Instalação'],
+  },
+  {
+    id: '4',
+    title: 'Conserto de Máquina de Lavar',
+    description: 'A máquina de lavar não está descartando adequadamente. Preciso de alguém para diagnosticar e reparar.',
+    category: 'Reparo de Máquina',
+    location: 'Rio de Janeiro, RJ',
+    date: '8 de Junho, 2023',
+    status: 'in-progress',
+    customerName: 'Ana Santos',
+    customerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '1',
+    skills: ['Reparo de Máquina', 'Encanamento'],
+  },
+  {
+    id: '5',
+    title: 'Pintura de Quarto',
+    description: 'Preciso pintar uma sala de 12x14. As paredes estão em bom estado, apenas preciso de uma mudança de cor.',
+    category: 'Pintura',
+    location: 'São Paulo, SP',
+    date: '20 de Maio, 2023',
     status: 'completed',
-    workerName: 'Sarah Johnson',
-    workerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
-    workerId: '3',
+    customerName: 'Pedro Costa',
+    customerAvatar: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
+    customerId: '5',
+    skills: ['Pintura', 'Interno'],
   },
 ];
 
-const UserDashboard: React.FC = () => {
+const PainelTrabalhador: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [services, setServices] = useState<ServiceData[]>(mockServices);
@@ -62,17 +92,35 @@ const UserDashboard: React.FC = () => {
     return <Navigate to="/login" />;
   }
   
-  if (user.role !== 'customer') {
-    return <Navigate to="/worker-dashboard" />;
+  if (user.role !== 'worker') {
+    return <Navigate to="/painel-usuario" />;
   }
   
-  const pendingServices = services.filter(s => s.status === 'pending');
+  const availableServices = services.filter(s => s.status === 'available');
   const activeServices = services.filter(s => s.status === 'in-progress');
   const completedServices = services.filter(s => s.status === 'completed');
   
-  const handleCancelService = (id: string) => {
+  const handleAcceptService = (id: string) => {
+    setServices(services.map(service => 
+      service.id === id 
+        ? { ...service, status: 'in-progress' as const } 
+        : service
+    ));
+    toast.success('Serviço aceito');
+  };
+  
+  const handleRejectService = (id: string) => {
     setServices(services.filter(service => service.id !== id));
-    toast.success('Service request cancelled');
+    toast.success('Pedido de serviço ignorado');
+  };
+  
+  const handleCompleteService = (id: string) => {
+    setServices(services.map(service => 
+      service.id === id 
+        ? { ...service, status: 'completed' as const } 
+        : service
+    ));
+    toast.success('Serviço marcado como concluído');
   };
   
   const handleViewDetails = (id: string) => {
@@ -85,17 +133,17 @@ const UserDashboard: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 animate-slide-down">
           <div>
             <h1 className="text-3xl font-bold">Bem-vindo, {user.name}</h1>
-            <p className="mt-1 text-muted-foreground">Gerencie suas solicitações de serviço</p>
+            <p className="mt-1 text-muted-foreground">Gerencie seus trabalhos de serviço</p>
           </div>
           
           <div className="mt-4 md:mt-0 flex gap-3">
-            <Link to="/service-request">
+            <Link to="/servicos-disponiveis">
               <Button className="button-hover">
-                <Plus className="mr-2 h-4 w-4" />
-                Solicitar Serviço
+                <Search className="mr-2 h-4 w-4" />
+                Achar Novos Trabalhos
               </Button>
             </Link>
-            <Link to="/chat">
+            <Link to="/chat-mensagens">
               <Button variant="outline" className="button-hover">
                 <MessageSquare className="mr-2 h-4 w-4" />
                 Mensagens
@@ -107,18 +155,18 @@ const UserDashboard: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <Card className="animate-slide-up">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xl">Pendentes</CardTitle>
-              <CardDescription>Solicitações de serviço aguardando aceitação</CardDescription>
+              <CardTitle className="text-xl">Disponíveis</CardTitle>
+              <CardDescription>Pedidos de serviço que você pode aceitar</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{pendingServices.length}</div>
+              <div className="text-3xl font-bold">{availableServices.length}</div>
             </CardContent>
           </Card>
           
           <Card className="animate-slide-up [animation-delay:100ms]">
             <CardHeader className="pb-3">
               <CardTitle className="text-xl">Ativos</CardTitle>
-              <CardDescription>Serviços em andamento</CardDescription>
+              <CardDescription>Serviços que você está trabalhando atualmente</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">{activeServices.length}</div>
@@ -128,7 +176,7 @@ const UserDashboard: React.FC = () => {
           <Card className="animate-slide-up [animation-delay:200ms]">
             <CardHeader className="pb-3">
               <CardTitle className="text-xl">Concluídos</CardTitle>
-              <CardDescription>Serviços já concluídos</CardDescription>
+              <CardDescription>Serviços que você concluiu</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">{completedServices.length}</div>
@@ -139,7 +187,7 @@ const UserDashboard: React.FC = () => {
         <Tabs defaultValue="active" className="animate-fade-in">
           <TabsList className="mb-6">
             <TabsTrigger value="active">Ativos</TabsTrigger>
-            <TabsTrigger value="pending">Pendentes</TabsTrigger>
+            <TabsTrigger value="available">Disponíveis</TabsTrigger>
             <TabsTrigger value="completed">Concluídos</TabsTrigger>
           </TabsList>
           
@@ -150,7 +198,8 @@ const UserDashboard: React.FC = () => {
                   <ServiceCard
                     key={service.id}
                     service={service}
-                    userRole="customer"
+                    userRole="worker"
+                    onComplete={handleCompleteService}
                     onViewDetails={handleViewDetails}
                   />
                 ))}
@@ -158,29 +207,30 @@ const UserDashboard: React.FC = () => {
             ) : (
               <div className="text-center py-12">
                 <Info className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">Nenhum serviço ativo</h3>
+                <h3 className="mt-4 text-lg font-medium">Nenhum trabalho ativo</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Você não tem nenhum serviço em andamento no momento.
+                  Você não tem nenhum trabalho ativo no momento.
                 </p>
-                <Link to="/service-request" className="mt-4 inline-block">
+                <Link to="/servicos-disponiveis" className="mt-4 inline-block">
                   <Button className="button-hover">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Solicitar Novo Serviço
+                    <Search className="mr-2 h-4 w-4" />
+                    Encontrar Trabalhos Disponíveis
                   </Button>
                 </Link>
               </div>
             )}
           </TabsContent>
           
-          <TabsContent value="pending" className="space-y-4">
-            {pendingServices.length > 0 ? (
+          <TabsContent value="available" className="space-y-4">
+            {availableServices.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {pendingServices.map((service) => (
+                {availableServices.map((service) => (
                   <ServiceCard
                     key={service.id}
                     service={service}
-                    userRole="customer"
-                    onCancel={handleCancelService}
+                    userRole="worker"
+                    onAccept={handleAcceptService}
+                    onReject={handleRejectService}
                     onViewDetails={handleViewDetails}
                   />
                 ))}
@@ -188,16 +238,13 @@ const UserDashboard: React.FC = () => {
             ) : (
               <div className="text-center py-12">
                 <Info className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">Nenhum serviço pendente</h3>
+                <h3 className="mt-4 text-lg font-medium">Nenhum trabalho disponível</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Você não tem nenhuma solicitação de serviço pendente.
+                  Não há trabalhos compatíveis com suas habilidades disponíveis no momento.
                 </p>
-                <Link to="/service-request" className="mt-4 inline-block">
-                  <Button className="button-hover">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Solicitar Novo Serviço
-                  </Button>
-                </Link>
+                <Button variant="outline" className="mt-4 button-hover" onClick={() => navigate(0)}>
+                  Atualizar
+                </Button>
               </div>
             )}
           </TabsContent>
@@ -209,7 +256,7 @@ const UserDashboard: React.FC = () => {
                   <ServiceCard
                     key={service.id}
                     service={service}
-                    userRole="customer"
+                    userRole="worker"
                     onViewDetails={handleViewDetails}
                   />
                 ))}
@@ -217,9 +264,9 @@ const UserDashboard: React.FC = () => {
             ) : (
               <div className="text-center py-12">
                 <History className="mx-auto h-12 w-12 text-muted-foreground" />
-                <h3 className="mt-4 text-lg font-medium">Nenhum serviço concluído</h3>
+                <h3 className="mt-4 text-lg font-medium">Nenhum trabalho concluído</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Você ainda não tem nenhum serviço concluído.
+                  Você ainda não concluiu nenhum trabalho.
                 </p>
                 <Link to="/service-history" className="mt-4 inline-block">
                   <Button variant="outline" className="button-hover">
@@ -235,4 +282,4 @@ const UserDashboard: React.FC = () => {
   );
 };
 
-export default UserDashboard;
+export default PainelTrabalhador;

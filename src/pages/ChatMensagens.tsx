@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, Navigate, Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
@@ -12,7 +11,7 @@ import { format, isToday, isYesterday } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
 
-const Chat: React.FC = () => {
+const ChatMensagens: React.FC = () => {
   const { user, getChats, getMessages, sendMessage, markChatAsRead } = useAuth();
   const { chatId } = useParams<{ chatId: string }>();
   const navigate = useNavigate();
@@ -219,7 +218,7 @@ const Chat: React.FC = () => {
             onClick={() => navigate(-1)}
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            Voltar
+          Voltar
           </Button>
           <h1 className="text-3xl font-bold">Mensagens</h1>
         </div>
@@ -396,4 +395,4 @@ const Chat: React.FC = () => {
   );
 };
 
-export default Chat;
+export default ChatMensagens;

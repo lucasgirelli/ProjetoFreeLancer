@@ -38,7 +38,7 @@ const Login: React.FC = () => {
 
   // Se o usuário já estiver autenticado, redireciona para o dashboard
   if (user) {
-    return <Navigate to={user.role === 'worker' ? '/worker-dashboard' : '/user-dashboard'} />;
+    return <Navigate to={user.role === 'worker' ? '/painel-trabalhador' : '/painel-usuario'} />;
   }
   
   return (

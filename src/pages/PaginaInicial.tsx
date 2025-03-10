@@ -6,10 +6,10 @@ import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
-const IndexPage = () => {
+const PaginaInicial = () => {
   // Adicionar logs para depuração
   useEffect(() => {
-    console.log("IndexPage renderizado");
+    console.log("PaginaInicial renderizada");
   }, []);
 
   return (
@@ -23,4 +23,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default PaginaInicial;
