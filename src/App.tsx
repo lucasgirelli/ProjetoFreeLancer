@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthContext";
 import HomeButton from "@/components/HomeButton";
-import NotFound from "./pages/NotFound";
+import PaginaNaoEncontrada from "./pages/PaginaNaoEncontrada";
 import PaginaInicial from "./pages/PaginaInicial";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -55,7 +55,7 @@ const App = () => (
             <Route path="/chat/:chatId" element={<Navigate to="/chat-mensagens/:chatId" replace />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<PaginaNaoEncontrada />} />
           </Routes>
         </AuthProvider>
       </TooltipProvider>
