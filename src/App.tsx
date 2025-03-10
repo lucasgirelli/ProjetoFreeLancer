@@ -17,6 +17,7 @@ import SolicitarServico from "./pages/SolicitarServico";
 import ServicosDisponiveis from "./pages/ServicosDisponiveis";
 import AvaliacoesTrabalhador from "./pages/AvaliacoesTrabalhador";
 import ChatMensagens from "./pages/ChatMensagens";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/" element={<PaginaInicial />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/painel-usuario" element={<PainelUsuario />} />
             <Route path="/painel-trabalhador" element={<PainelTrabalhador />} />
             <Route path="/perfil-trabalhador" element={<PerfilTrabalhador />} />

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -15,38 +16,38 @@ import ServiceCard, { ServiceData } from '@/components/ServiceCard';
 import { Plus, MessageSquare, Info, History } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Mock data
-const mockServices: ServiceData[] = [
+// Dados fictícios
+const servicosFicticios: ServiceData[] = [
   {
     id: '1',
-    title: 'Fix Leaking Bathroom Faucet',
-    description: 'The bathroom sink faucet is leaking and needs repair or replacement.',
-    category: 'Plumbing',
-    location: 'Brooklyn, NY',
-    date: 'June 10, 2023',
+    title: 'Consertar Vazamento na Torneira do Banheiro',
+    description: 'A torneira do banheiro está vazando e precisa de reparo ou substituição.',
+    category: 'Encanamento',
+    location: 'São Paulo, SP',
+    date: '10 de Junho, 2023',
     status: 'in-progress',
-    workerName: 'Mike Peters',
+    workerName: 'Miguel Pereira',
     workerAvatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
     workerId: '2',
   },
   {
     id: '2',
-    title: 'Paint Living Room Walls',
-    description: 'Need to repaint living room walls. The room is approximately 15x20 feet.',
-    category: 'Painting',
-    location: 'Manhattan, NY',
-    date: 'June 15, 2023',
+    title: 'Pintar Paredes da Sala de Estar',
+    description: 'Necessito pintar as paredes da sala de estar. O ambiente tem aproximadamente 15x20 metros.',
+    category: 'Pintura',
+    location: 'Rio de Janeiro, RJ',
+    date: '15 de Junho, 2023',
     status: 'pending',
   },
   {
     id: '3',
-    title: 'Replace Kitchen Light Fixture',
-    description: 'Need to replace an old light fixture in the kitchen with a new pendant light.',
-    category: 'Electrical',
-    location: 'Queens, NY',
-    date: 'May 28, 2023',
+    title: 'Substituir Luminária da Cozinha',
+    description: 'Preciso substituir uma luminária antiga da cozinha por um novo modelo de pendente.',
+    category: 'Elétrica',
+    location: 'Curitiba, PR',
+    date: '28 de Maio, 2023',
     status: 'completed',
-    workerName: 'Sarah Johnson',
+    workerName: 'Sandra Johnson',
     workerAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80',
     workerId: '3',
   },
@@ -55,7 +56,7 @@ const mockServices: ServiceData[] = [
 const PainelUsuario: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [services, setServices] = useState<ServiceData[]>(mockServices);
+  const [servicos, setServicos] = useState<ServiceData[]>(servicosFicticios);
 
   if (!user) {
     return <Navigate to="/login" />;
@@ -65,16 +66,16 @@ const PainelUsuario: React.FC = () => {
     return <Navigate to="/painel-trabalhador" />;
   }
   
-  const pendingServices = services.filter(s => s.status === 'pending');
-  const activeServices = services.filter(s => s.status === 'in-progress');
-  const completedServices = services.filter(s => s.status === 'completed');
+  const servicosPendentes = servicos.filter(s => s.status === 'pending');
+  const servicosAtivos = servicos.filter(s => s.status === 'in-progress');
+  const servicosConcluidos = servicos.filter(s => s.status === 'completed');
   
-  const handleCancelService = (id: string) => {
-    setServices(services.filter(service => service.id !== id));
+  const handleCancelarServico = (id: string) => {
+    setServicos(servicos.filter(servico => servico.id !== id));
     toast.success('Solicitação de serviço cancelada');
   };
   
-  const handleViewDetails = (id: string) => {
+  const handleVerDetalhes = (id: string) => {
     navigate(`/servico/${id}`);
   };
   
@@ -110,7 +111,7 @@ const PainelUsuario: React.FC = () => {
               <CardDescription>Solicitações de serviço aguardando aceitação</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{pendingServices.length}</div>
+              <div className="text-3xl font-bold">{servicosPendentes.length}</div>
             </CardContent>
           </Card>
           
@@ -120,7 +121,7 @@ const PainelUsuario: React.FC = () => {
               <CardDescription>Serviços em andamento</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{activeServices.length}</div>
+              <div className="text-3xl font-bold">{servicosAtivos.length}</div>
             </CardContent>
           </Card>
           
@@ -130,7 +131,7 @@ const PainelUsuario: React.FC = () => {
               <CardDescription>Serviços já concluídos</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{completedServices.length}</div>
+              <div className="text-3xl font-bold">{servicosConcluidos.length}</div>
             </CardContent>
           </Card>
         </div>
@@ -143,14 +144,14 @@ const PainelUsuario: React.FC = () => {
           </TabsList>
           
           <TabsContent value="active" className="space-y-4">
-            {activeServices.length > 0 ? (
+            {servicosAtivos.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {activeServices.map((service) => (
+                {servicosAtivos.map((servico) => (
                   <ServiceCard
-                    key={service.id}
-                    service={service}
+                    key={servico.id}
+                    service={servico}
                     userRole="customer"
-                    onViewDetails={handleViewDetails}
+                    onViewDetails={handleVerDetalhes}
                   />
                 ))}
               </div>
@@ -172,15 +173,15 @@ const PainelUsuario: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="pending" className="space-y-4">
-            {pendingServices.length > 0 ? (
+            {servicosPendentes.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {pendingServices.map((service) => (
+                {servicosPendentes.map((servico) => (
                   <ServiceCard
-                    key={service.id}
-                    service={service}
+                    key={servico.id}
+                    service={servico}
                     userRole="customer"
-                    onCancel={handleCancelService}
-                    onViewDetails={handleViewDetails}
+                    onCancel={handleCancelarServico}
+                    onViewDetails={handleVerDetalhes}
                   />
                 ))}
               </div>
@@ -202,14 +203,14 @@ const PainelUsuario: React.FC = () => {
           </TabsContent>
           
           <TabsContent value="completed" className="space-y-4">
-            {completedServices.length > 0 ? (
+            {servicosConcluidos.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {completedServices.map((service) => (
+                {servicosConcluidos.map((servico) => (
                   <ServiceCard
-                    key={service.id}
-                    service={service}
+                    key={servico.id}
+                    service={servico}
                     userRole="customer"
-                    onViewDetails={handleViewDetails}
+                    onViewDetails={handleVerDetalhes}
                   />
                 ))}
               </div>
@@ -220,7 +221,7 @@ const PainelUsuario: React.FC = () => {
                 <p className="mt-2 text-muted-foreground">
                   Você ainda não tem nenhum serviço concluído.
                 </p>
-                <Link to="/service-history" className="mt-4 inline-block">
+                <Link to="/historico-servicos" className="mt-4 inline-block">
                   <Button variant="outline" className="button-hover">
                     Ver Histórico de Serviços
                   </Button>
