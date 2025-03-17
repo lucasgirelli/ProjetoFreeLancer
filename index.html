@@ -1,19 +1,341 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Service Link</title>
-    <meta name="description" content="Plataforma de serviços para o lar" />
-    <meta name="author" content="Home Service Link" />
-    <meta property="og:image" content="/og-image.png" />
-  </head>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="home-button">
+            <a href="index.html" class="btn btn-outline">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 22V12H15V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="home-text">Página Inicial</span>
+            </a>
+        </div>
+    </header>
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Serviços domésticos de qualidade ao seu alcance</h1>
+                    <p>Conectamos você aos melhores profissionais para resolver qualquer problema em sua casa.
+                       Rápido, seguro e com garantia de qualidade.</p>
+                    <div class="hero-buttons">
+                        <a href="register.html" class="btn btn-primary">
+                            Criar Conta
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="login.html" class="btn-link">
+                            Já tenho uma conta →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços Populares Section -->
+        <section class="services">
+            <div class="container">
+                <h2>Serviços Populares</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 16L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Encanamento</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Consertos, instalações e manutenção de sistemas hidráulicos.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Elétrica</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Instalações elétricas, reparos e manutenção.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 19L19 12L22 15L15 22L12 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M18 13L16.5 5.5L2 2L5.5 16.5L13 18L18 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M2 2L9.586 9.586" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11 13C12.1046 13 13 12.1046 13 11C13 9.89543 12.1046 9 11 9C9.89543 9 9 9.89543 9 11C9 12.1046 9.89543 13 11 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Pintura</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Pintura de interiores e exteriores com qualidade profissional.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.7 6.30001C14.7 6.30001 14.3 6.80001 12.7 6.80001C11.1 6.80001 10.7 6.30001 10.7 6.30001" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M13.1994 3.5C13.7987 3.5 14.2994 3.9995 14.3171 4.59879L14.7 14H10.7L11.0829 4.59879C11.1006 3.9995 11.6013 3.5 12.2006 3.5H13.1994Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.7 14L15.5 19.4C15.5996 19.9466 15.262 20.4764 14.7309 20.6368C11.8218 21.4571 10.0309 19.2913 10.0309 19.2913C9.86731 19.0408 9.78565 18.7447 9.80567 18.4459L10.1 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Reparos Gerais</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Diversos tipos de reparos e manutenções domésticas.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 12L17 14L21 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15.5 4H18C19.1046 4 20 4.89543 20 6V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15.5 20H18C19.1046 20 20 19.1046 20 18V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8.5 4H6C4.89543 4 4 4.89543 4 6V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M8.5 20H6C4.89543 20 4 19.1046 4 18V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <rect x="13" y="5" width="2" height="14" rx="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Carpintaria</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Montagem e reparo de móveis e estruturas de madeira.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 16.5V17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 6.5V14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Refrigeração</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Instalação e manutenção de ar-condicionado e refrigeração.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Funciona Section -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2>Como Funciona</h2>
+                <p class="section-description">Nossa plataforma conecta você a profissionais confiáveis em apenas alguns passos simples</p>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Encontre o serviço</h3>
+                        <p>Busque pelo tipo de serviço que você precisa e encontre profissionais qualificados.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Entre em contato</h3>
+                        <p>Converse diretamente com o profissional para discutir detalhes e preços.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Agende o serviço</h3>
+                        <p>Escolha uma data e horário convenientes para a realização do serviço.</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Avalie o trabalho</h3>
+                        <p>Após a conclusão, avalie a qualidade do serviço para ajudar outros usuários.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2>O que nossos usuários dizem</h2>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-avatar">MS</div>
+                            <div class="user-info">
+                                <h3>Mariana Silva</h3>
+                                <p>Cliente</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="rating">
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                            </div>
+                            <p>Encontrei um eletricista excelente que resolveu um problema que eu tinha há meses. Serviço rápido e profissional!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-avatar">CS</div>
+                            <div class="user-info">
+                                <h3>Carlos Santos</h3>
+                                <p>Cliente</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="rating">
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                            </div>
+                            <p>A plataforma é muito fácil de usar. Em menos de um dia já tinha um encanador em casa resolvendo meu problema.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-avatar">RO</div>
+                            <div class="user-info">
+                                <h3>Rafael Oliveira</h3>
+                                <p>Prestador de Serviços</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="rating">
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star filled"></span>
+                                <span class="star"></span>
+                            </div>
+                            <p>Desde que me cadastrei como prestador, minha agenda está sempre cheia. A plataforma conecta exatamente o tipo de cliente que precisa dos meus serviços.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Home Service Link</h3>
+                    <p>Conectando você aos melhores profissionais para seus serviços domésticos.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="#">Encanamento</a></li>
+                        <li><a href="#">Elétrica</a></li>
+                        <li><a href="#">Pintura</a></li>
+                        <li><a href="#">Reparos Gerais</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Empresa</h3>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Como funciona</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Termos de uso</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li>contato@homeservicelink.com</li>
+                        <li>(00) 1234-5678</li>
+                        <li class="social-icons">
+                            <a href="#">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5931 15.1514 13.8416 15.5297C13.0901 15.9079 12.2384 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22773 13.4229 8.09407 12.5922C7.9604 11.7615 8.09207 10.9099 8.47033 10.1584C8.84859 9.40685 9.45419 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.1283C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17.5 6.5H17.51" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <a href="#">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.9572 14.8821 3.28445C14.0247 3.61171 13.2884 4.1944 12.773 4.95372C12.2575 5.71305 11.9877 6.61234 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C21.0011 7.22145 20.9709 6.94359 20.91 6.67C21.9239 5.66349 22.6046 4.38271 23 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Home Service Link. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
 </html>
