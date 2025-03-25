@@ -290,40 +290,6 @@
                 document.querySelectorAll('.card')[0].querySelector('.text-3xl').textContent = '0';
             }, 300);
         }
-        
-        // Função para mostrar toast
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `toast toast-${type}`;
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" class="toast-icon"></i>
-                    <span>${message}</span>
-                </div>
-                <button class="toast-close">
-                    <i data-lucide="x" class="toast-close-icon"></i>
-                </button>
-            `;
-            
-            document.querySelector('.toast-container').appendChild(toast);
-            lucide.createIcons();
-            
-            // Fechar toast ao clicar no botão
-            toast.querySelector('.toast-close').addEventListener('click', () => {
-                toast.classList.add('toast-exit');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
-            });
-            
-            // Auto-remover após 5 segundos
-            setTimeout(() => {
-                toast.classList.add('toast-exit');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
-            }, 5000);
-        }
     </script>
 </body>
 </html>
