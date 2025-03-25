@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Usuário - Home Service Link</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="min-h-screen pt-16 pb-12 bg-gradient">
+        <div class="page-container mt-6">
+            <div class="header animate-slide-down">
+                <div>
+                    <h1 class="text-3xl font-bold">Bem-vindo, João da Silva</h1>
+                    <p class="mt-1 text-muted">Gerencie suas solicitações de serviço</p>
+                </div>
+                
+                <div class="header-buttons">
+                    <a href="solicitar-servico.html" class="button button-primary">
+                        <i data-lucide="plus" class="icon"></i>
+                        Solicitar Serviço
+                    </a>
+                    <a href="chat-mensagens.html" class="button button-outline">
+                        <i data-lucide="message-square" class="icon"></i>
+                        Mensagens
+                    </a>
+                </div>
+            </div>
+            
+            <div class="cards-grid">
+                <div class="card animate-slide-up">
+                    <div class="card-header">
+                        <h2 class="card-title">Pendentes</h2>
+                        <p class="card-description">Solicitações de serviço aguardando aceitação</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="text-3xl font-bold">1</div>
+                    </div>
+                </div>
+                
+                <div class="card animate-slide-up delay-100">
+                    <div class="card-header">
+                        <h2 class="card-title">Ativos</h2>
+                        <p class="card-description">Serviços em andamento</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="text-3xl font-bold">1</div>
+                    </div>
+                </div>
+                
+                <div class="card animate-slide-up delay-200">
+                    <div class="card-header">
+                        <h2 class="card-title">Concluídos</h2>
+                        <p class="card-description">Serviços já concluídos</p>
+                    </div>
+                    <div class="card-content">
+                        <div class="text-3xl font-bold">1</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tabs animate-fade-in">
+                <div class="tabs-list">
+                    <button class="tab active" data-tab="active">Ativos</button>
+                    <button class="tab" data-tab="pending">Pendentes</button>
+                    <button class="tab" data-tab="completed">Concluídos</button>
+                </div>
+                
+                <div class="tab-content" id="active-tab">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-card-header">
+                                <span class="service-category">Encanamento</span>
+                                <span class="service-status in-progress">Em Andamento</span>
+                            </div>
+                            <h3 class="service-title">Consertar Vazamento na Torneira do Banheiro</h3>
+                            <p class="service-description">A torneira do banheiro está vazando e precisa de reparo ou substituição.</p>
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <i data-lucide="map-pin" class="icon-sm"></i>
+                                    <span>São Paulo, SP</span>
+                                </div>
+                                <div class="service-detail">
+                                    <i data-lucide="calendar" class="icon-sm"></i>
+                                    <span>10 de Junho, 2023</span>
+                                </div>
+                            </div>
+                            <div class="service-worker">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" alt="Miguel Pereira" class="worker-avatar">
+                                <div class="worker-info">
+                                    <span class="worker-name">Miguel Pereira</span>
+                                    <span class="worker-rating">
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon empty"></i>
+                                        <span class="rating-number">4.0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="button button-outline" onclick="window.location.href='servico/1'">
+                                    <i data-lucide="info" class="icon-sm"></i>
+                                    Detalhes
+                                </button>
+                                <button class="button button-outline" onclick="window.location.href='chat-mensagens/worker-2'">
+                                    <i data-lucide="message-square" class="icon-sm"></i>
+                                    Mensagem
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content hidden" id="pending-tab">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-card-header">
+                                <span class="service-category">Pintura</span>
+                                <span class="service-status pending">Pendente</span>
+                            </div>
+                            <h3 class="service-title">Pintar Paredes da Sala de Estar</h3>
+                            <p class="service-description">Necessito pintar as paredes da sala de estar. O ambiente tem aproximadamente 15x20 metros.</p>
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <i data-lucide="map-pin" class="icon-sm"></i>
+                                    <span>Rio de Janeiro, RJ</span>
+                                </div>
+                                <div class="service-detail">
+                                    <i data-lucide="calendar" class="icon-sm"></i>
+                                    <span>15 de Junho, 2023</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="button button-outline" onclick="window.location.href='servico/2'">
+                                    <i data-lucide="info" class="icon-sm"></i>
+                                    Detalhes
+                                </button>
+                                <button class="button button-primary-destructive" onclick="cancelarServico(2)">
+                                    <i data-lucide="x" class="icon-sm"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content hidden" id="completed-tab">
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-card-header">
+                                <span class="service-category">Elétrica</span>
+                                <span class="service-status completed">Concluído</span>
+                            </div>
+                            <h3 class="service-title">Substituir Luminária da Cozinha</h3>
+                            <p class="service-description">Precisei substituir uma luminária antiga da cozinha por um novo modelo de pendente.</p>
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <i data-lucide="map-pin" class="icon-sm"></i>
+                                    <span>Curitiba, PR</span>
+                                </div>
+                                <div class="service-detail">
+                                    <i data-lucide="calendar" class="icon-sm"></i>
+                                    <span>28 de Maio, 2023</span>
+                                </div>
+                            </div>
+                            <div class="service-worker">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" alt="Sandra Johnson" class="worker-avatar">
+                                <div class="worker-info">
+                                    <span class="worker-name">Sandra Johnson</span>
+                                    <span class="worker-rating">
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <i data-lucide="star" class="star-icon"></i>
+                                        <span class="rating-number">5.0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="button button-outline" onclick="window.location.href='servico/3'">
+                                    <i data-lucide="info" class="icon-sm"></i>
+                                    Detalhes
+                                </button>
+                                <button class="button button-outline" onclick="window.location.href='avaliacoes-trabalhador/3'">
+                                    <i data-lucide="star" class="icon-sm"></i>
+                                    Avaliar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content hidden" id="empty-active">
+                    <div class="empty-state">
+                        <i data-lucide="info" class="empty-icon"></i>
+                        <h3 class="empty-title">Nenhum serviço ativo</h3>
+                        <p class="empty-description">
+                            Você não tem nenhum serviço em andamento no momento.
+                        </p>
+                        <a href="solicitar-servico.html" class="button button-primary mt-4">
+                            <i data-lucide="plus" class="icon-sm"></i>
+                            Solicitar Novo Serviço
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="tab-content hidden" id="empty-pending">
+                    <div class="empty-state">
+                        <i data-lucide="info" class="empty-icon"></i>
+                        <h3 class="empty-title">Nenhum serviço pendente</h3>
+                        <p class="empty-description">
+                            Você não tem nenhuma solicitação de serviço pendente.
+                        </p>
+                        <a href="solicitar-servico.html" class="button button-primary mt-4">
+                            <i data-lucide="plus" class="icon-sm"></i>
+                            Solicitar Novo Serviço
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="tab-content hidden" id="empty-completed">
+                    <div class="empty-state">
+                        <i data-lucide="history" class="empty-icon"></i>
+                        <h3 class="empty-title">Nenhum serviço concluído</h3>
+                        <p class="empty-description">
+                            Você ainda não tem nenhum serviço concluído.
+                        </p>
+                        <a href="historico-servicos.html" class="button button-outline mt-4">
+                            Ver Histórico de Serviços
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-button">
+        <a href="index.html" class="home-button-link">
+            <i data-lucide="home" class="home-icon"></i>
+        </a>
+    </div>
+    
+    <div class="toast-container"></div>
+    
+    <script src="scripts.js"></script>
+    <script>
+        // Inicializar ícones Lucide
+        lucide.createIcons();
+        
+        // Manipulação das abas
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remover classe active de todas as abas
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                
+                // Adicionar classe active na aba clicada
+                tab.classList.add('active');
+                
+                // Esconder todos os conteúdos de aba
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Mostrar o conteúdo da aba correspondente
+                const tabId = tab.getAttribute('data-tab');
+                const tabContent = document.getElementById(tabId + '-tab');
+                
+                if (tabContent) {
+                    tabContent.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Função para cancelar serviço
+        function cancelarServico(id) {
+            // Mostrar toast de confirmação
+            showToast('Solicitação de serviço cancelada', 'success');
+            
+            // Remover card de serviço da interface (em uma aplicação real, enviaria para o backend)
+            setTimeout(() => {
+                document.getElementById('pending-tab').innerHTML = '';
+                document.getElementById('empty-pending').classList.remove('hidden');
+                
+                // Atualizar contador
+                document.querySelectorAll('.card')[0].querySelector('.text-3xl').textContent = '0';
+            }, 300);
+        }
+        
+        // Função para mostrar toast
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i data-lucide="${type === 'success' ? 'check-circle' : 'info'}" class="toast-icon"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="toast-close">
+                    <i data-lucide="x" class="toast-close-icon"></i>
+                </button>
+            `;
+            
+            document.querySelector('.toast-container').appendChild(toast);
+            lucide.createIcons();
+            
+            // Fechar toast ao clicar no botão
+            toast.querySelector('.toast-close').addEventListener('click', () => {
+                toast.classList.add('toast-exit');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            });
+            
+            // Auto-remover após 5 segundos
+            setTimeout(() => {
+                toast.classList.add('toast-exit');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
