@@ -1,4 +1,3 @@
-
 // Arquivo de scripts globais para o site
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar ícones Lucide (se disponível)
