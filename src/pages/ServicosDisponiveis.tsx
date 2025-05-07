@@ -1,10 +1,13 @@
+
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Search, ArrowLeft } from 'lucide-react';
+import { toast } from 'sonner';
 import ServiceCard, { ServiceData } from '@/components/ServiceCard';
 
 // Dados simulados
@@ -86,7 +89,9 @@ const categories = [
 const ServicosDisponiveis: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Todas categorias');
+  const [services, setServices] = useState(mockServices);
   const { user } = useAuth();
+  const navigate = useNavigate();
   
   if (!user) {
     return <Navigate to="/login" />;
@@ -97,7 +102,7 @@ const ServicosDisponiveis: React.FC = () => {
   }
   
   // Filtrar serviços com base na pesquisa e categoria
-  const filteredServices = mockServices.filter((service) => {
+  const filteredServices = services.filter((service) => {
     const matchesSearch = service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          service.description.toLowerCase().includes(searchTerm.toLowerCase());
     
@@ -108,24 +113,42 @@ const ServicosDisponiveis: React.FC = () => {
   });
   
   const handleAcceptService = (id: string) => {
-    // Lógica para aceitar o serviço seria implementada aqui
+    // Atualiza o estado para marcar o serviço como aceito (em andamento)
+    setServices(services.map(service => 
+      service.id === id 
+        ? { ...service, status: 'in-progress' as const } 
+        : service
+    ));
     console.log('Serviço aceito:', id);
+    toast.success('Serviço aceito com sucesso!');
   };
   
   const handleRejectService = (id: string) => {
-    // Lógica para rejeitar o serviço seria implementada aqui
+    // Remove o serviço da lista de serviços disponíveis
+    setServices(services.filter(service => service.id !== id));
     console.log('Serviço rejeitado:', id);
+    toast.success('Serviço rejeitado.');
   };
   
   const handleViewDetails = (id: string) => {
-    // Lógica para visualizar detalhes seria implementada aqui
+    // Redireciona para a página de detalhes do serviço
+    navigate(`/servico/${id}`);
     console.log('Visualizando detalhes:', id);
   };
   
   return (
     <div className="min-h-screen pt-16 pb-12 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="page-container mt-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 animate-slide-down">
+        <div className="flex items-center mb-6">
+          <Button 
+            variant="ghost" 
+            className="mr-2"
+            onClick={() => navigate('/painel-trabalhador')}
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Voltar
+          </Button>
+          
           <div>
             <h1 className="text-3xl font-bold">Serviços Disponíveis</h1>
             <p className="mt-1 text-muted-foreground">Encontre trabalhos que combinam com suas habilidades</p>
