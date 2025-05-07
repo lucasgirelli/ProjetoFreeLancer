@@ -18,6 +18,7 @@ import ServicosDisponiveis from "./pages/ServicosDisponiveis";
 import AvaliacoesTrabalhador from "./pages/AvaliacoesTrabalhador";
 import ChatMensagens from "./pages/ChatMensagens";
 import ForgotPassword from "./pages/ForgotPassword";
+import DetalhesServico from "./pages/DetalhesServico";
 
 const queryClient = new QueryClient();
 
@@ -42,9 +43,9 @@ const App = () => (
             <Route path="/avaliacoes-trabalhador/:workerId" element={<AvaliacoesTrabalhador />} />
             <Route path="/chat-mensagens" element={<ChatMensagens />} />
             <Route path="/chat-mensagens/:chatId" element={<ChatMensagens />} />
+            <Route path="/servico/:id" element={<DetalhesServico />} />
             {/* Rota de fallback para redirecionamento */}
             <Route path="/index" element={<Navigate to="/" replace />} />
-            <Route path="/servico/:id" element={<SolicitarServico />} />
             
             {/* Rotas legadas para compatibilidade */}
             <Route path="/user-dashboard" element={<Navigate to="/painel-usuario" replace />} />
